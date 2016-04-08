@@ -1,0 +1,16 @@
+<h1>All Notes</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+    <% @notes.each do |note| %>
+        <tr>
+            <td><%= note.title %></td>
+            <td><%= note.content %></td>
+        </tr>
+    <% end %>
+</table>
+
+<%= link_to "New Note", new_note_path %>
