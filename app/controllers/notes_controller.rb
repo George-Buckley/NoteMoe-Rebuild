@@ -1,5 +1,12 @@
 class NotesController < ApplicationController
+    before_action :authenticate_user! 
+    before_filter :require_permission, only: [:edit, :show]
+    
     def new
+        @note = current_user.notes.build
+    end
+    
+    def noaccess
     end
     
     def edit
@@ -7,8 +14,7 @@ class NotesController < ApplicationController
     end
     
     def index
-        @notes = Note.all
-        @notes = Note.order(created_at: :desc)
+        @notes = Note.where(user_id: current_user).order(created_at: :desc)
     end
     
     def show
@@ -16,7 +22,7 @@ class NotesController < ApplicationController
     end
     
     def create
-        @note = Note.new(note_params)
+        @note = current_user.notes.build(note_params)
         
         @note.save
         redirect_to @note
@@ -41,6 +47,12 @@ class NotesController < ApplicationController
     
     private
         def note_params
-            params.require(:note).permit(:title, :content)
+            params.require(:note).permit(:title, :content, :user_id)
+        end
+        
+        def require_permission
+            if current_user != Note.find(params[:id]).user
+                redirect_to noaccess_path
+            end
         end
 end

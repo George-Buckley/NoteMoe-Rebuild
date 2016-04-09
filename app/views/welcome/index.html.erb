@@ -1,3 +1,6 @@
 <h1>NoteMoe</h1>
-<%= link_to 'My Notes', controller: 'notes' %>
+<%= link_to 'Sign Up', new_user_registration_path %>
+<%= link_to 'Sign In', new_user_session_path %>
+<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+<%= link_to 'My Notes', notes_path %>
 <%= link_to 'New Note', new_note_path %>

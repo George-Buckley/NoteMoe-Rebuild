@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :notes
+  get '/noaccess' => 'notes#noaccess'
   get 'welcome/index'
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
