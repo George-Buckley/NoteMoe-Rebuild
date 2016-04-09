@@ -54,5 +54,7 @@ class NotesController < ApplicationController
             if current_user != Note.find(params[:id]).user
                 redirect_to noaccess_path
             end
+            rescue ActiveRecord::RecordNotFound
+                redirect_to nonote_path
         end
 end
