@@ -14,7 +14,7 @@ class NotesController < ApplicationController
     end
     
     def index
-        @notes = Note.where(user_id: current_user).order(created_at: :desc)
+        @notes = Note.where(user_id: current_user).order(created_at: :desc).paginate(:page => params[:page], :per_page => 8)
     end
     
     def show
@@ -57,4 +57,5 @@ class NotesController < ApplicationController
             rescue ActiveRecord::RecordNotFound
                 redirect_to nonote_path
         end
+
 end
