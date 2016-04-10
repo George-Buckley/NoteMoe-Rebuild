@@ -95,7 +95,6 @@ body {
   &:after {
     content: "";
     width: 1px;
-    background: 1px $border;
     height: 90%;
     position: absolute;
     top: 5em;
@@ -110,8 +109,7 @@ body {
     margin-bottom: 1em;
     position: relative;
     z-index: 1;
-    display: table;
-    width: 96%;
+    width: 98%;
     img, .info, .job_type {
       display: table-cell;
       vertical-align: middle;

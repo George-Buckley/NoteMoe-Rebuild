@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  will_paginate:
+    models:
+      line_item:
+        zero:  line items
+        one:   line item
+        few:   line items
+        other: line items

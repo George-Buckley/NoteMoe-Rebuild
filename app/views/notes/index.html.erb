@@ -5,7 +5,7 @@
         <li class="listing clearfix">
           <div class="info">
             <span class="job_title"><%= note.title %></span>
-            <span class="job_info">Created <span>-</span> <%= time_ago_in_words(note.created_at) + " ago" %></span>
+            <span class="job_info"><%= time_ago_in_words(note.updated_at) + " ago" %></span>
             <span class="job_links" id="job_links">
             <%= link_to " View " , note_path(note.id), id:"notelinks" %>
             |
@@ -24,6 +24,9 @@
             <%= link_to "New Note", new_note_path %>
           </button>
         <% end %>
+        <center>
+        <%= page_entries_info @notes, :model => 'note' %><br />
         <%= will_paginate @notes %>
+        </center>
     </div>
 </div>
