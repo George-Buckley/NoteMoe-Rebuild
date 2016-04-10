@@ -1,27 +1,21 @@
-<div class="container">
-    <row class="row">
-        <div class="col-12-md">
-            <h1>All Notes</h1>
+<ul id="timeline">
+    <% unless @notes.blank? %>
+    <% @notes.each do |note| %>
+      <a href="<%= (url_for [note]) %>">
+        <li class="listing clearfix">
+          <div class="info">
+            <span class="job_title"><%= note.title %></span>
+            <span class="job_info">Created <span>-</span> <%= time_ago_in_words(note.created_at) + " ago" %></span>
+            <span class="job_links" id="job_links">
+            <%= link_to " View " , note_path(note.id), id:"notelinks" %>
+            |
+            <%= link_to " Edit ", edit_note_path(note.id), id:"notelinks" %>
+            |
+            <%= link_to " Delete ", note_path(note.id), :method => :delete, id:"notelinks" %>
+            </span>
         </div>
-    </row>
-    <div class="row">
-        <% unless @notes.blank? %>
-        <% @notes.each do |note| %>
-            <a href="<%= (url_for [note]) %>">
-                <div class="col-md-3">
-                    <div class="well">
-                        <h3><%= note.title.first(19) %></h3>
-                        <p><%= time_ago_in_words(note.created_at) + " ago" %></p>
-                        <p>
-                        <button>
-                            <%= link_to "Edit", edit_note_path(note.id) %>
-                        </button>
-                        <button>
-                            <%= link_to "Delete", note_path(note.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </button>
-                        </p>
-                    </div>
-                </div>
+        </li>
+      </a>
         <% end %>
         <% else %>
           <h2>Add a Note</h2>
@@ -32,5 +26,3 @@
         <% end %>
     </div>
 </div>
-      
-<%= link_to "New Note", new_note_path %>

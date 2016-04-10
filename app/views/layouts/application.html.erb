@@ -2,19 +2,33 @@
 <html>
 <head>
   <title>NoteMoe</title>
+  <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Open+Sans:300,700" %>
+  <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" %>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= link_to 'Sign Up', new_user_registration_path %>
-<%= link_to 'Sign In', new_user_session_path %>
-<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-<%= link_to 'My Notes', notes_path %>
-<%= link_to 'New Note', new_note_path %>
+  <div class="border"></div>
+  <div class="wrapper">
+    <header class="main_header clearfix">
+      <div class="logo">
+        <%= image_tag "notepad.svg" %>
+        <h1>Note<span>MOE</span></h1>
+      </div>
+      <nav class="nav">
+        <% if user_signed_in? %>
+        <%= link_to 'New Note', new_note_path %>
+        <%= link_to 'My Notes', notes_path %>
+        <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+        <% else %>
+        <%= link_to 'Sign Up', new_user_registration_path %>
+        <%= link_to 'Login', new_user_session_path %>
+        <% end %>
+      </nav>
+    </header>
+  
 <%= yield %>
-
-</body>
-</html>
