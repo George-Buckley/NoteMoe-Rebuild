@@ -226,6 +226,12 @@ body {
   }
 }
 
+#chromewebstore {
+  img {
+    width: 25%;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .main_header {
     margin-top: 3em;
@@ -251,9 +257,21 @@ body {
       margin: 0 .5em;
     }
   }
+  
+  #chromewebstore {
+  img {
+    width: 40%;
+  }
+}
 }
 
 @media only screen and (max-width: 600px) {
+  #chromewebstore {
+  img {
+    width: 50%;
+  }
+  }
+  
   #timeline {
     .listing {
       .image_wrapper {
