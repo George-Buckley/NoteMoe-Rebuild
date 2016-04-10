@@ -3,12 +3,12 @@
     <center><h2><%= @note.title %></h2></center>
     </div>
     <div class="col-md-6 col-md-offset-3">
-    <center><br />
+    <center>
+    <hr>
 <p>
-    <strong>Content:<br /></strong>
     <%= @note.content %>
 </p>
-
+<hr>
 <%= link_to "Edit", edit_note_path, class: 'btn btn-warning' %>
 |
 <%= link_to "Delete", note_path, :method => :delete, data: { confirm: 'Delete Note?' }, class: 'btn btn-danger'%>
