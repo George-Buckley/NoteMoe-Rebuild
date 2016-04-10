@@ -11,18 +11,17 @@
             |
             <%= link_to " Edit ", edit_note_path(note.id), id:"notelinks" %>
             |
-            <%= link_to " Delete ", note_path(note.id), :method => :delete, id:"notelinks" %>
+            <%= link_to " Delete ", note_path(note.id), :method => :delete, id:"notelinks", data: { confirm: 'Delete Note?' }  %>
             </span>
         </div>
         </li>
       </a>
         <% end %>
         <% else %>
+        <hr>
           <h2>Add a Note</h2>
           <p>It appears you haven't created any notes yet... Lets fix that. Why don't you go ahead and create a new note.</p>
-          <button>
-            <%= link_to "New Note", new_note_path %>
-          </button>
+            <%= link_to "New Note", new_note_path, class: 'btn btn-success' %><br /><hr><br />
         <% end %>
         <center>
         <%= page_entries_info @notes, :model => 'note' %><br />
