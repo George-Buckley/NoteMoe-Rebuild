@@ -9,5 +9,5 @@ class Note < ActiveRecord::Base
                 random_id = SecureRandom.random_number(10_000_000)
             break random_id unless random_id < 1_000_000 or User.where(id: random_id).exists?
         end
-    end  
+        end  
 end

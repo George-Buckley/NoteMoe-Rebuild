@@ -14,7 +14,7 @@ class NotesController < ApplicationController
     end
     
     def index
-        @notes = Note.where(user_id: current_user).order(updated_at: :desc).paginate(:page => params[:page], :per_page => 5)
+        @notes = Note.where(["title LIKE ?","%#{params[:search]}%"]).where(user_id: current_user).order(updated_at: :desc).paginate(:page => params[:page], :per_page => 5)
     end
     
     def show
