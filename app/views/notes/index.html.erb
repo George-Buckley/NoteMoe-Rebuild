@@ -29,7 +29,6 @@
             <%= link_to "New Note", new_note_path, class: 'btn btn-success' %><br /><hr><br />
         <% end %>
         <center>
-        <%= page_entries_info @notes, :model => 'note' %><br />
         <%= will_paginate @notes %>
         </center>
     </div>

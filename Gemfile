@@ -24,6 +24,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'will_paginate', '~> 3.0.6'
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
+gem 'rails_admin'
+gem 'rails_admin_flatly_theme', github: 'konjoot/rails_admin_flatly_theme'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

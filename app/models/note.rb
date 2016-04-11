@@ -3,6 +3,12 @@ class Note < ActiveRecord::Base
     require 'securerandom'
     before_create :randomize_id
     
+    rails_admin do
+        configure :user do
+            label 'Owner of this ball: '
+        end
+    end
+    
     private
         def randomize_id
             self.id = loop do
