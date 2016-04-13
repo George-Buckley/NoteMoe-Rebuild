@@ -1,6 +1,15 @@
+require 'api_constraints'
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      resources :notes
+    end
+  end
+  
   resources :notes
   get '/noaccess' => 'notes#noaccess'
   get '/nonote' => 'notes#nonote'
