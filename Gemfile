@@ -26,6 +26,7 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 gem 'rails_admin'
 gem 'rails_admin_flatly_theme', github: 'konjoot/rails_admin_flatly_theme'
+gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_serializers.git', branch: '0-8-stable'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

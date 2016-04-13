@@ -1,9 +1,9 @@
 class Api::V1::NotesController < Api::V1::ApiController
-    before_filter :restrict_access
-    respond_to :json
+    before_action :authenticate_with_token!, only: [:create, :update]
     
     def index
-        respond_with Note.all
+        notes = params[:note_id].present? ? Note.find(params[:note_id]) : Note.all
+        respond_with notes
     end
     
     def show
@@ -11,20 +11,36 @@ class Api::V1::NotesController < Api::V1::ApiController
     end
     
     def create
-        respond_with Note.create(params[:note])
+    note = current_user.products.build(note_params)
+    if product.save
+      render json: note, status: 201, location: [:api, note]
+    else
+      render json: { errors: note.errors }, status: 422
     end
+    end
+
     
     def update
-        respond_with Note.update(params[:id], params[:note])
+    note = current_user.note.find(params[:id])
+    if note.update(note_params)
+      render json: note, status: 200, location: [:api, note]
+    else
+      render json: { errors: note.errors }, status: 422
+    end
     end
     
     def destroy
-        respond_with Note.destroy(params[:id])
+    note = current_user.note.find(params[:id])
+    note.destroy
+    head 204
     end
     
     private
     def restrict_access
         api_key = ApiKey.find_by_access_token(params[:access_token])
         head :unauthorized unless api_key
+    end
+    def note_params
+      params.require(:note).permit(:title, :content)
     end
 end

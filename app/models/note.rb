@@ -3,6 +3,10 @@ class Note < ActiveRecord::Base
     require 'securerandom'
     before_create :randomize_id
     
+    scope :filter_by_title, lambda { |keyword|
+        where("lower(title) LIKE ?", "%#{keyword.downcase}%" )
+    }
+    
     rails_admin do
         configure :user do
             label 'Owner of this ball: '
