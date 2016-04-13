@@ -1,9 +1,4 @@
 <ul id="timeline">
-  <li class="listing clearfix">
-    <div class="info">
-    <span class="job_info">Ads:</span><br />
-    </div>
-  </li>
     <% unless @notes.blank? %>
     <% @notes.each do |note| %>
       <a href="<%= (url_for [note]) %>">
